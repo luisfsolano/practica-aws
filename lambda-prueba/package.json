@@ -1,0 +1,11 @@
+{
+  "name": "lambda-prueba",
+  "version": "1.0.0",
+  "description": "lambda prueba en js",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
