@@ -8,10 +8,29 @@ provider:
   region: ${opt:region, 'us-east-1'}
   apiGateway:
     shouldStartNameWithService: true
+  environment:
+    TABLE_CARS: carros-${self:provider.stage}
+    LOG_ENVIRONMENT: ${file(./serverless.env.yml):${opt:envrt}.LOGGER_ROOT_LEVEL}
+    PATH_RESOURCES: /v1/luisfsolano/test
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+      - dynamodb:Scan
+      - dynamodb:Query
+      - dynamodb:PutItem
+      Resource: arn:aws:dynamodb:us-east-1:988963550722:table/carros-${self:provider.stage}
 functions:
-  metodoInicial:
-    handler: handler.metodoInicial
+  createCar:
+    handler: handler.create
     events:
       - http:
-          path: /prueba/prueba1
+          path: ${self:provider.environment.PATH_RESOURCES}/createCar
+          method: post
+    memorySize: 128
+  getAllCars:
+    handler: handler.getAll
+    events:
+      - http:
+          path: ${self:provider.environment.PATH_RESOURCES}/getAll
           method: get
+    memorySize: 128

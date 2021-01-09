@@ -4,8 +4,19 @@
   "description": "lambda prueba en js",
   "main": "handler.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "standard --fix",
+    "test": "nyc --reporter=lcovonly --reporter=text mocha"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "luissolano13@gmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.2.1",
+    "nyc": "^15.1.0",
+    "sinon": "^9.2.3",
+    "standard": "^16.0.3"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.824.0"
+  }
 }
